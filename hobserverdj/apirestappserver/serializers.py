@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username','email','first_name','last_name','gender','is_active','is_staff','is_superuser','date_joined','birth_date','adress','city','country','image_url','password']
+        fields = ['username','email','first_name','last_name','gender','birth_date','adress','city','country','password']
 
     def create(self, validated_data, **kwargs):
         """
@@ -65,7 +65,7 @@ class UpdateUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('first_name','last_name','gender','is_active','is_staff','is_superuser','date_joined','birth_date','adress','city','country','image_url')
+        fields = ('first_name','last_name','city','country','image_url')
 
 
     def update(self, instance, validated_data):
@@ -74,13 +74,6 @@ class UpdateUserSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({"authorize": "You dont have permission for this user."})
         instance.first_name=validated_data['first_name'],
         instance.last_name=validated_data['last_name'],
-        instance.gender=validated_data['gender'],
-        instance.is_active=validated_data['is_active'],
-        instance.is_staff=validated_data['is_staff'],
-        instance.is_superuser=validated_data['is_superuser'],
-        instance.date_joined=['date_joined'],
-        instance.birth_date=validated_data['birth_date'],
-        instance.adress=validated_data['adress'],
         instance.city=validated_data['city'],
         instance.country=validated_data['country']
         instance.image_url=validated_data['image_url']

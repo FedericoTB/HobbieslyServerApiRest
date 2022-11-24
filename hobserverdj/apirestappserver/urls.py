@@ -18,7 +18,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api/', include('rest_framework.urls', namespace='rest_framework')),
     path("api/register/", UserRegistrationView.as_view(), name="register"),
-    path("api/login/", LoginView.as_view(), name="login"),
+    path("api/loginng/", LoginView.as_view(), name="loginng"),
     path("api/update-profile/<int:pk>/", UpdateProfileView.as_view(), name="update-profile"),
     path("api/change-password/<int:pk>/",ChangePasswordView.as_view(),name="change-password",),
     path('api/token/', jwt_views.TokenObtainPairView.as_view(), name='token_obtain_pair'),
