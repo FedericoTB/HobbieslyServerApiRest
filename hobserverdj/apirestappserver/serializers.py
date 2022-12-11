@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ['username','email','first_name','last_name','gender','birth_date','adress','city','country','password']
+        fields = ['id','username','email','first_name','last_name','gender','birth_date','adress','city','country','image_url','password']
 
     def create(self, validated_data, **kwargs):
         """
@@ -33,7 +33,8 @@ class UserSerializer(serializers.ModelSerializer):
             birth_date=validated_data['birth_date'],
             adress=validated_data['adress'],
             city=validated_data['city'],
-            country=validated_data['country']
+            country=validated_data['country'],
+            image_url=validated_data['image_url']
         )
         password = validated_data["password"]
         user.set_password(password)
@@ -111,29 +112,29 @@ class ChangePasswordSerializer(serializers.ModelSerializer):
 class UsersGroupsSerializer(serializers.ModelSerializer):
     class Meta:
         model = UsersGroups
-        fields = ['name','description','image_url','created_at','owner','members']
+        fields = ['id','name','description','image_url','created_at','owner']
 
 class CategoriesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Categories
-        fields = ['name','description']
+        fields = ['id','name','description']
 
 class MembershipsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Membership
-        fields = ['user','group','date_joined','invite_reason']
+        fields = ['id','user','group','date_joined','invite_reason']
 
 class ClassificationsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Classification
-        fields = ['category','group']
+        fields = ['id','category','group']
 
 class RoomsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Rooms
-        fields = ['name','description','image_url','created_at','updated_at','group','owner']
+        fields = ['id','name','description','image_url','created_at','updated_at','group','owner']
 
 class MessagesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Messages
-        fields = ['owner','room','content','created_at','updated_at']
+        fields = ['id','owner','room','content','created_at','updated_at']
